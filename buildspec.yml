@@ -17,4 +17,5 @@ phases:
       - npm install --production
   post_build:
     commands:
+      - cat pk.pem
       - scp -i ./pk.pem -r * ec2-user@$EC2_IP_ADDRESS:~
