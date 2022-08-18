@@ -1,0 +1,20 @@
+version: 0.2
+
+env:
+  parameter-store:
+    PUBLIC_KEY: "/calc/PRIVATE_KEY"
+    EC2_IP_ADDRESS: "/calc/EC2_IP_ADDRESS"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16.x
+  pre_build:
+    commands:
+      - echo $PUBLIC_KEY > pk.pem
+  build:
+    commands:
+      - npm install --production
+  post_build:
+    commands:
+      - scp -i ./pk.pem -r * ec2-user@$EC2_IP_ADDRESS:~
