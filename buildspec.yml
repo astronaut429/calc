@@ -12,6 +12,7 @@ phases:
   pre_build:
     commands:
       - echo $PUBLIC_KEY > pk.pem.encoded
+      - cat pk.pem.encoded
       - base64 -d pk.pem.encoded > pk.pem
   build:
     commands:
