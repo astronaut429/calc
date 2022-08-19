@@ -11,7 +11,8 @@ phases:
       nodejs: 16.x
   pre_build:
     commands:
-      - echo $PUBLIC_KEY | base64 -d > pk.pem
+      - echo $PUBLIC_KEY > pk.pem.encoded
+      - base64 -d pk.pem.encoded > pk.pem
   build:
     commands:
       - npm install --production
