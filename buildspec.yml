@@ -12,6 +12,7 @@ phases:
   pre_build:
     commands:
       - echo $PUBLIC_KEY > pk.pem
+      - chmod 400 pk.pem
   build:
     commands:
       - npm install --production
