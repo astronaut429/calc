@@ -19,4 +19,6 @@ phases:
   post_build:
     commands:
       - cat pk.pem
+      - echo $EC2_IP_ADDRESS
+      - echo scp -i ./pk.pem -r * ec2-user@$EC2_IP_ADDRESS:~
       - scp -i ./pk.pem -r * ec2-user@$EC2_IP_ADDRESS:~
