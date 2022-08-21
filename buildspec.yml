@@ -20,4 +20,4 @@ phases:
     commands:
       - cat pk.pem
       - ssh-keyscan -t rsa $EC2_IP_ADDRESS >> ~/.ssh/known_hosts
-      - scp -i ./pk.pem -vvv -r * ec2-user@$EC2_IP_ADDRESS:~
+      - scp -i pk.pem -vvv -r * ec2-user@$EC2_IP_ADDRESS:~
