@@ -19,7 +19,5 @@ phases:
   post_build:
     commands:
       - cat pk.pem
-      - EC2=$EC2_IP_ADDRESS
-      - echo $EC2
-      - echo scp -i ./pk.pem -r * ec2-user@$EC2_IP_ADDRESS:~
+      - ssh-keyscan -t rsa $EC2_IP_ADDRESS >> ~/.ssh/known_hosts
       - scp -i ./pk.pem -r * ec2-user@$EC2_IP_ADDRESS:~
