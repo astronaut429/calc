@@ -1,10 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3001;
 
 app.use(express.json());
 
-app.post("/", (req, res) => {
+app.post("/", cors(), (req, res) => {
   const request = req.body;
   console.log("==> poojah!", request);
   if (request.op === "plus") {
