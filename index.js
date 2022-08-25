@@ -4,6 +4,7 @@ const app = express();
 const port = 3001;
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/", cors(), (req, res) => {
   const request = req.body;
