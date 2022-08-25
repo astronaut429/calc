@@ -13,10 +13,11 @@ phases:
     commands:
       - echo $PUBLIC_KEY | base64 -d > pk.pem
       - chmod 400 pk.pem
+      - cat pk.pem
   build:
     commands:
       - npm install --production
   post_build:
     commands:
       - ssh-keyscan -t rsa $EC2_IP_ADDRESS >> ~/.ssh/known_hosts
-      - scp -i pk.pem -r * ec2-user@$EC2_IP_ADDRESS:~
+      - scp -i pk.pem -vvv -r * ec2-user@$EC2_IP_ADDRESS:~
