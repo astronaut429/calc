@@ -1,29 +1,22 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
-const port = 3001;
+const { json } = require("express");
 
-app.use(express.json());
-app.use(cors());
+exports.handler = async function (event, context) {
+  console.log(event, context);
+  let res;
 
-app.post("/", cors(), (req, res) => {
-  const request = req.body;
+  const request = JSON.parse(event.body);
   console.log("==> poojah!", request);
   if (request.op === "plus") {
-    res.send(String(Number(request.op1) + Number(request.op2)));
+    res = String(Number(request.op1) + Number(request.op2));
   } else if (request.op === "minus") {
-    res.send(String(Number(request.op1) - Number(request.op2)));
+    res = String(Number(request.op1) - Number(request.op2));
   } else if (request.op === "multiplication") {
-    res.send(String(Number(request.op1) * Number(request.op2)));
+    res = String(Number(request.op1) * Number(request.op2));
   } else if (request.op === "division") {
-    res.send(String(Number(request.op1) / Number(request.op2)));
+    res = String(Number(request.op1) / Number(request.op2));
   } else {
-    res.send("noop");
+    res = "noop";
   }
 
-  res.end();
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+  return res;
+};
