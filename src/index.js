@@ -1,5 +1,3 @@
-const { json } = require("express");
-
 exports.handler = async function (event, context) {
   console.log(event, context);
   let res;
